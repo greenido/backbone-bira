@@ -1,0 +1,102 @@
+<div class="row">
+
+  <form class="form-horizontal span12">
+
+    <fieldset>
+
+      <legend>Beer Details</legend>
+      <br/>
+
+      <div class="row">
+        <div class="span9">
+
+          <div class="control-group">
+            <label for="beerId" class="control-label">Id:</label>
+
+            <div class="controls">
+              <input id="beerId" name="id" type="text" value="<%= id === null ? '' : id %>" class="span1"
+                     disabled/>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="name" class="control-label">Name:</label>
+
+            <div class="controls">
+              <input type="text" id="name" name="name" value="<%= name %>"/>
+              <span class="help-inline"></span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="grapes" class="control-label">Score:</label>
+
+            <div class="controls">
+              <input type="text" id="grapes" name="grapes" value="<%= grapes %>"/>
+              <span class="help-inline"></span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="country" class="control-label">Country:</label>
+
+            <div class="controls">
+              <input type="text" id="country" name="country" value="<%= country %>"/>
+              <span class="help-inline"></span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="region" class="control-label">Type:</label>
+
+            <div class="controls">
+              <input type="text" id="region" name="region" value="<%= region %>"/>
+            </div>
+          </div>
+
+
+
+          <div class="control-group">
+            <label for="description" class="control-label">Notes:</label>
+
+            <div class="controls">
+              <textarea id="description" name="description" class="span6" rows="6"><%= description
+                                %></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="span3">
+          <div class="well">
+            <p><img id="picture" width="180" src="<%= picture === null ? 'pics/generic.jpg' : 'pics/' + picture %>"/></p>
+
+            <p>TODO: (?) 
+              <br/>To change the picture, drag a new picture...
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </fieldset>
+
+    <div class="form-actions">
+      <a href="#" class="btn btn-primary save">Save</a>
+      <a href="#" class="btn btn-large share">Share - TODO</a>
+      <a href="#" class="btn btn-small delete">Delete</a>
+    </div>
+
+  </form>
+
+</div>
+
+<div class="row status-bar">
+  <div class="span12">
+    <div class="alert alert-success" style="display: none">
+      <b>Yep!</b> Your Beer saved in GAE
+    </div>
+  </div>
+</div>
+
+

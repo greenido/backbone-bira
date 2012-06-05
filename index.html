@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Birra Demo</title>
+    <meta name="description" content="Beer I/O 2012 Demo - Also known as Birra (the hebrew word for beer)">
+    <meta name="author" content="Ido Green | greenido.wordpress.com">
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+  </head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+    <div class="header"></div>
+
+    <div class="container">
+      <div class="row">
+        <div id="content" class="span12>"></div>
+      </div>
+
+      <footer class="footer">
+        <p class="pull-right">
+          
+          <a href="#" class="btn btn-large" data-icon='home'>Home</a> 
+        </p>
+
+        <p>
+          <img src="https://developers.google.com/images/developers-logo.png" class="quimby_search_image">
+          &copy; Google 2012
+        </p>
+      </footer>
+
+    </div>
+
+    <script src="lib/jquery-1.7.2.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/backbone-min.js"></script>
+    <script src="lib/bootstrap.js"></script>
+
+
+    <script src="js/utils.js"></script>
+    <script src="js/models/models.js"></script>
+    <script src="js/views/paginator.js"></script>
+    <script src="js/views/header.js"></script>
+    <script src="js/views/beerlist.js"></script>
+    <script src="js/views/beerdetails.js"></script>
+    <script src="js/views/about.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- web intent -->
+    <script src="//webintents.org/webintents.min.js"></script>
+    <script src="//webintents.org/webintents-prefix.js"></script>
+
+    <!-- analytics -->
+    <script>
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-31753022-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
