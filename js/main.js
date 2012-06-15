@@ -1,65 +1,60 @@
+var beers = null;
+var app = null;
+
 var AppRouter = Backbone.Router.extend({
 
-  routes: {
-    ""                  : "list",
-    "beers/page/:page"	: "list",
-    "beers/add"         : "addBeer",
-    "beers/:id"         : "beerDetails",
-    "about"             : "about"
-  },
+	routes: {
+		"" : "list",
+		"beers/page/:page" : "list",
+		"beers/add"  : "addBeer",
+		"beers/:id"  : "beerDetails",
+		"about" : "about"
+	},
 
-  initialize: function () {
-    this.headerView = new HeaderView();
-    $('.header').html(this.headerView.el);
-  },
+	initialize: function () {
+		this.headerView = new HeaderView();
+		$('.header').html(this.headerView.el);
+	},
 
-  list: function(page) {
-    var p = page ? parseInt(page, 10) : 1;
-    var beerList = new BeerCollection();
-    beerList.fetch({
-      success: function(){
-        $("#content").html(new BeerListView({
-          model: beerList, 
-          page: p
-        }).el);
-      }
-    });
-    this.headerView.selectMenuItem('home-menu');
-  },
+	list: function(page) {
+		var p = page ? parseInt(page, 10) : 1;
 
-  beerDetails: function (id) {
-    var beer = new Beer({
-      id: id
-    });
-    beer.fetch({
-      success: function(){
-        $("#content").html(new BeerView({
-          model: beer
-        }).el);
-      }
-    });
-    this.headerView.selectMenuItem();
-  },
+		beers.fetch({
+			success: function(){
+				$("#content").html(new BeerListView({
+					beerCollection: beers,
+					page: p
+				}).render().el);
+			}
+		});
+		this.headerView.selectMenuItem('home-menu');
+	},
 
-  addBeer: function() {
-    var beer = new Beer();
-    $('#content').html(new BeerView({
-      model: beer
-    }).el);
-    this.headerView.selectMenuItem('add-menu');
-  },
+	beerDetails: function (id) {
+		$("#content").append(new BeerView({ model: beers.get(id) }).el);
+		this.headerView.selectMenuItem();
+	},
 
-  about: function () {
-    if (!this.aboutView) {
-      this.aboutView = new AboutView();
-    }
-    $('#content').html(this.aboutView.el);
-    this.headerView.selectMenuItem('about-menu');
-  }
+	addBeer: function() {
+		var beer = new Beer();
+		$('#content').append(new BeerView({
+			model: beer
+		}).el);
+		this.headerView.selectMenuItem('add-menu');
+	},
+
+	about: function () {
+		if (!this.aboutView) {
+			this.aboutView = new AboutView();
+		}
+		$('#content').html(this.aboutView.el);
+		this.headerView.selectMenuItem('about-menu');
+	}
 
 });
 
 utils.loadTemplate(['HeaderView', 'BeerView', 'BeerListItemView', 'AboutView'], function() {
-  app = new AppRouter();
-  Backbone.history.start();
+	app = new AppRouter();
+	beers = new BeerCollection();
+	Backbone.history.start();
 });

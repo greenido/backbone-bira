@@ -1,6 +1,5 @@
 window.Beer = Backbone.Model.extend({
-
-    urlRoot: "api/beers",
+	url: "https://birra.googleplex.com/_ah/api/birra/v1/beer",
 
     initialize: function () {
         this.validators = {};
@@ -39,7 +38,6 @@ window.Beer = Backbone.Model.extend({
         return _.size(messages) > 0 ? {isValid: false, messages: messages} : {isValid: true};
     },
 
-// TODO:
     defaults: {
         id: null,
         name: "VB",
@@ -55,6 +53,6 @@ window.Beer = Backbone.Model.extend({
 window.BeerCollection = Backbone.Collection.extend({
 
     model: Beer,
-    url: "api/beers"
+    url: "https://birra.googleplex.com/_ah/api/birra/v1/beer"
 
 });

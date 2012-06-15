@@ -3,13 +3,13 @@ window.Paginator = Backbone.View.extend({
     className: "pagination pagination-centered",
 
     initialize:function () {
-        this.model.bind("reset", this.render, this);
+        this.options.collection.bind("reset", this.render, this);
         this.render();
     },
 
     render:function () {
 
-        var items = this.model.models;
+        var items = this.options.collection.models;
         var len = items.length;
         var pageCount = Math.ceil(len / 8);
 
