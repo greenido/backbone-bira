@@ -1,9 +1,10 @@
 <a href="#beers/<%= id %>" class="thumbnail plain">
-  <img border=0 src="http://maps.googleapis.com/maps/api/staticmap?center=' +
+  	<img src="pics/<%= picture %>" height="150" width="125" alt="beer image"> 
+    <h2><%= name %></h2>
+    <p>Score: <%= grapes %><br/>
+    <i class="icon-globe"></i> <%= country %></p>
+    
+    <img border=0 src="http://maps.googleapis.com/maps/api/staticmap?center=' +
           <%= country %> + '&zoom=10&size=262x112&maptype=roadmap&markers=color:blue%7Clabel:S%7C' + 
           <%= country %> + '&sensor=true"/>  
-    <h5><%= name %></h5>
-    <p>Score: <%= grapes %><br/>
-    <i class="icon-globe"></i> <%= region %>, <%= country %></p>
-    <img src="pics/<%= picture %>" height="150" width="125" alt=""> 
 </a>
