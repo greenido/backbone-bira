@@ -9,7 +9,7 @@ window.BeerListView = Backbone.View.extend({
         var startPos = (this.options.page - 1) * 8;
         var endPos = Math.min(startPos + 8, len);
 
-        $(this.el).html('<ul class="thumbnails"></ul>');
+        $(this.el).append($("<ul>").addClass("thumbnails"));
 
         for (var i = startPos; i < endPos; i++) {
             $('.thumbnails', this.el).append(new BeerListItemView({model: this.beers.models[i]}).render().el);
@@ -33,7 +33,6 @@ window.BeerListItemView = Backbone.View.extend({
     },
 
     render: function () {
-		debugger;
         $(this.el).html(this.template(this.model.toJSON()));
         return this;
     }

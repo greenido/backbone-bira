@@ -1,5 +1,4 @@
 window.Beer = Backbone.Model.extend({
-	url: "https://birra.googleplex.com/_ah/api/birra/v1/beer",
 
     initialize: function () {
         this.validators = {};
@@ -39,19 +38,15 @@ window.Beer = Backbone.Model.extend({
     },
 
     defaults: {
-        id: null,
-        name: "VB",
-        grapes: "Ale",
-        country: "Australia",
-        region: "Victoria",
-        year: "2009",
-        description: "",
-        picture: "generic.jpg"
+        beerName: null,
+        kindOfBeer: null,
+        numberOfDrinks: 0,
+        score: 0,
+        image: "generic.jpg"
     }
 });
 
 window.BeerCollection = Backbone.Collection.extend({
-
     model: Beer,
     url: "https://birra.googleplex.com/_ah/api/birra/v1/beer"
 
