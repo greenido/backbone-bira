@@ -20,3 +20,7 @@ a.plain:hover
 #searchBeer {
   margin-top: 5px;
 }
+
+.beer-selector img {
+	width: 80px;
+}

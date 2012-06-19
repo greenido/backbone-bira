@@ -1,11 +1,12 @@
 <a href="#beers/<%- id %>" class="thumbnail plain">
-  	<img src="data:image/jpeg;base64,<%- image.value %>" height="150" width="125" alt="beer image">
+  	<img style="border: 0" class="thumbnail-image" width="125" alt="beer image">
     <h2><%= beerName %></h2>
     <p><i class="icon-signal"></i>Score: <%- score %><br/>
-	<p><i class="icon-glass"></i>Number of Drinks: <%- numberOfDrinks %><br/>
-    
-    <img border=0 src="http://maps.googleapis.com/maps/api/staticmap?center=' +
-          <%= latitude %> + '&zoom=10&size=262x112&maptype=roadmap&markers=color:blue%7Clabel:S%7C' +
-          <%= longitude %> + '&sensor=true"/>
+	<p><i class="icon-glass"></i>Number of Drinks: <%- numberOfDrinks %></p>
+	<p><i class="icon-remove"></i><span class="remove">Remove Beer</span></p>
+
+    <img style="border: 0" src="http://maps.googleapis.com/maps/api/staticmap?center=' +
+          <%- latitude %> + '&zoom=10&size=262x112&maptype=roadmap&markers=color:blue%7Clabel:S%7C' +
+          <%- longitude %> + '&sensor=true"/>
 </a>
 

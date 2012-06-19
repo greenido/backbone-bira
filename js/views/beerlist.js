@@ -24,7 +24,6 @@ window.BeerListView = Backbone.View.extend({
 window.BeerListItemView = Backbone.View.extend({
 
     tagName: "li",
-
     className: "span3",
 
     initialize: function () {
@@ -32,8 +31,19 @@ window.BeerListItemView = Backbone.View.extend({
         this.model.bind("destroy", this.close, this);
     },
 
+	events: {
+		"click .remove" : "removeItem"
+	},
+
+	removeItem : function () {
+		this.model.destroy();
+	},
+
     render: function () {
         $(this.el).html(this.template(this.model.toJSON()));
+		var imageURI = this.model.toJSON().image ? "data:image;base64," + this.model.toJSON().image.value : "/img/beer.png";
+
+		$(this.el).find(".thumbnail-image").attr("src", imageURI);
         return this;
     }
 

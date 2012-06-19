@@ -38,11 +38,14 @@ window.Beer = Backbone.Model.extend({
     },
 
     defaults: {
-        beerName: null,
-        kindOfBeer: null,
+		id: null,
+		grapes: null,
+		country: null,
+		region: null,
+		description: null,
+		image: null,
         numberOfDrinks: 0,
-        score: 0,
-        image: "generic.jpg"
+        score: 0
     }
 });
 
