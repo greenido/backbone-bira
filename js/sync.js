@@ -1,63 +1,59 @@
+
 Backbone.sync = function(method, model, options) {
-	var methodMap = {
-		'create': 'POST',
-		'read'  : 'GET',
-		'update': 'PUT',
-		'delete': 'DELETE'
-	};
 
-	var getValue = function(object, prop) {
-		if (!(object && object[prop])) return null;
-		return _.isFunction(object[prop]) ? object[prop]() : object[prop];
-	};
+    var getValue = function(object, prop) {
+        if (!(object && object[prop])) return null;
+        return _.isFunction(object[prop]) ? object[prop]() : object[prop];
+    };
 
-	var type = methodMap[method];
+    var endpoint = getValue(model, 'url');
 
-	// Default options, unless specified.
-	options || (options = {});
+    var requestMap = {
+        'create': endpoint.insert(model.toJSON()),
+        'read'  : endpoint.list(),
+        'update': endpoint.update(model.toJSON()),
+        'delete': endpoint.delete({ id: model.id })
+    };
 
-	// Default JSON-request options.
-	var params = {type: type, dataType: 'json'};
+    var parseMap = {
+        'create' : function(data) {
+            if (data.result) {
+                options.success(data.result);
+            } else {
+                options.error(data);
+            }
+            console.log(data);
+        },
+        'read' : function(data) {
+            if (data.items) {
+                options.success(data.items);
+            } else {
+                options.error(data);
+            }
+            console.log(data);
+        },
+        'update' : function(data) {
+            if (data.result) {
+                options.success(data.result);
+            } else {
+                options.error(data);
+            }
+            console.log(data);
+        },
+        'delete' : function(data) {
+            if (data.error) {
+                options.error(data);
+            } else {
+                options.success();
+            }
+            console.log(data);
+        }
+    };
 
-	// Ensure that we have a URL.
-	if (!options.url) {
-		params.url = getValue(model, 'url') || urlError();
-	}
 
-	// Ensure that we have the appropriate request data.
-	if (!options.data && model && (method == 'create' || method == 'update')) {
-		params.contentType = 'application/json';
-		params.data = JSON.stringify(model.toJSON());
-	}
+    var req = requestMap[method];
+    req.execute(parseMap[method]);
 
-	// For older servers, emulate JSON by encoding the request into an HTML-form.
-	if (Backbone.emulateJSON) {
-		params.contentType = 'application/x-www-form-urlencoded';
-		params.data = params.data ? {model: params.data} : {};
-	}
+    return req;
 
-	// For older servers, emulate HTTP by mimicking the HTTP method with `_method`
-	// And an `X-HTTP-Method-Override` header.
-	if (Backbone.emulateHTTP) {
-		if (type === 'PUT' || type === 'DELETE') {
-			if (Backbone.emulateJSON) params.data._method = type;
-			params.type = 'POST';
-			params.beforeSend = function(xhr) {
-				xhr.setRequestHeader('X-HTTP-Method-Override', type);
-			};
-		}
-	}
-
-	// Don't process data on a non-GET request.
-	if (params.type !== 'GET' && !Backbone.emulateJSON) {
-		params.processData = false;
-	}
-
-	// Build a custom success function to peel off the etag.
-	var success = options.success;
-	options.success = function(data) {
-		success(data["items"]);
-	};
-
-	return $.ajax(_.extend(params, options));
 };

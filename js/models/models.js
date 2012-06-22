@@ -51,6 +51,9 @@ window.Beer = Backbone.Model.extend({
 
 window.BeerCollection = Backbone.Collection.extend({
     model: Beer,
-    url: "https://birra.googleplex.com/_ah/api/birra/v1/beer"
+    //url: "https://birra.googleplex.com/_ah/api/birra/v1/beer"
+    url: function() {
+        return gapi.client.birra.beers;
+    }
 
 });

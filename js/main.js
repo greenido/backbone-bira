@@ -18,7 +18,6 @@ var AppRouter = Backbone.Router.extend({
 
 	list: function(page) {
 		var p = page ? parseInt(page, 10) : 1;
-
 		beers.fetch({
 			success: function(){
 				$("#content").html(new BeerListView({
@@ -54,9 +53,10 @@ var AppRouter = Backbone.Router.extend({
 });
 
 utils.loadTemplate(['HeaderView', 'BeerView', 'BeerListItemView', 'AboutView'], function() {
-	app = new AppRouter();
-	beers = new BeerCollection();
-	Backbone.history.start();
+
+    app = new AppRouter();
+    beers = new BeerCollection();
+
 });
 
 function initDropbox(id) {
