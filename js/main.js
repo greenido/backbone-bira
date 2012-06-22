@@ -30,13 +30,13 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	beerDetails: function (id) {
-		$("#content").append(new BeerView({ model: beers.get(id) }).el);
+		$("#content").html(new BeerView({ model: beers.get(id) }).el);
 		this.headerView.selectMenuItem();
 	},
 
 	addBeer: function() {
 		var beer = new Beer();
-		$('#content').append(new BeerView({
+		$('#content').html(new BeerView({
 			model: beer
 		}).el);
 		this.headerView.selectMenuItem('add-menu');
