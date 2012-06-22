@@ -6,12 +6,9 @@ window.BeerView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template(this.model.toJSON()));
-		var beerSelector = $(this.el).find(".beer-selector");
-
-		for (var i = 0; i < 12; i++) {
-			var beer = $("<img>").attr("src", "/img/beers/" + (i+1) + ".png");
-			beerSelector.append(beer);
-		}
+        setTimeout(function() {
+            initDropbox("beer-selector");
+        }, 1000);
 
         return this;
     },

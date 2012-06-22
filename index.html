@@ -34,6 +34,33 @@
 
     </div>
 
+    <script src="https://apis.google.com/js/client.js?onload=loadGapi">
+        { "client": {},
+            "googleapis.config": {
+                root: "https://birra.googleplex.com/_ah/api"
+            }
+        }
+    </script>
+    <script>
+        // ================ Google API ================
+        //
+        // Load our service
+        function loadGapi() {
+            // Set the API key
+            gapi.client.setApiKey('AIzaSyAlZqy1ElhVN_Hbutey0xNabhZ14bEpcAo');
+            // Set: name of service, version and callback function
+            gapi.client.load('birra', 'v1', getBeers);
+        }
+
+        // return a list of beers
+        function getBeers() {
+            var req = gapi.client.birra.beers.list();
+            req.execute(function(data) {
+                console.log("-- We have " + data.items.length + " beers --");
+
+            });
+        }
+    </script>
     <script src="lib/jquery-1.7.2.min.js"></script>
     <script src="lib/underscore-min.js"></script>
     <script src="lib/backbone-min.js"></script>

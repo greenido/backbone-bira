@@ -39,11 +39,11 @@ window.Beer = Backbone.Model.extend({
 
     defaults: {
 		id: null,
-		grapes: null,
-		country: null,
-		region: null,
-		description: null,
-		image: null,
+		grapes: "",
+		country: "",
+		region: "",
+		description: "",
+		image: "",
         numberOfDrinks: 0,
         score: 0
     }
