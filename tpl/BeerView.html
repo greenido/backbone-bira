@@ -1,3 +1,10 @@
+<div class="row status-bar">
+    <div class="span12">
+        <div class="alert alert-success" style="display: none"></div>
+    </div>
+</div>
+
+
 <div class="row">
 
   <form class="form-horizontal span12">
@@ -20,10 +27,10 @@
           </div>
 
           <div class="control-group">
-            <label for="name" class="control-label">Name:</label>
+            <label for="beerName" class="control-label">Beer Name:</label>
 
             <div class="controls">
-              <input type="text" id="name" name="name" value="<%= beerName %>"/>
+              <input type="text" id="beerName" name="beerName" value="<%= beerName %>"/>
               <span class="help-inline"></span>
             </div>
           </div>
@@ -83,12 +90,5 @@
 
 </div>
 
-<div class="row status-bar">
-  <div class="span12">
-    <div class="alert alert-success" style="display: none">
-      <b>Yep!</b> Your Beer saved in GAE
-    </div>
-  </div>
-</div>
 
 

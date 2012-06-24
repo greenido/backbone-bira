@@ -2,6 +2,8 @@ window.BeerListView = Backbone.View.extend({
 
     initialize: function () {
 		this.beers = this.options.beerCollection;
+        this.beers.bind("change", this.render, this);
+        this.beers.bind("destroy", this.render, this);
     },
 
     render: function () {
@@ -9,7 +11,7 @@ window.BeerListView = Backbone.View.extend({
         var startPos = (this.options.page - 1) * 8;
         var endPos = Math.min(startPos + 8, len);
 
-        $(this.el).append($("<ul>").addClass("thumbnails"));
+        $(this.el).html($("<ul>").addClass("thumbnails"));
 
         for (var i = startPos; i < endPos; i++) {
             $('.thumbnails', this.el).append(new BeerListItemView({model: this.beers.models[i]}).render().el);
@@ -41,7 +43,6 @@ window.BeerListItemView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template(this.model.toJSON()));
-		//var imageURI = this.model.toJSON().image ? "data:image;base64," + this.model.toJSON().image.value : "/img/beer.png";
         var imageURI = this.model.toJSON().image ? this.model.toJSON().image.value : "/img/beer.png";
 
         $(this.el).find(".thumbnail-image").attr("src", imageURI);
