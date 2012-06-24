@@ -49,7 +49,7 @@ window.Beer = Backbone.Model.extend({
 		country: "",
 		region: "",
 		description: "",
-		image: { value : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACCCAYAAACNbQytAAAAGXRFWHRTb2Z0d2FyZQB" +
+		image: { value : "iVBORw0KGgoAAAANSUhEUgAAAHgAAACCCAYAAACNbQytAAAAGXRFWHRTb2Z0d2FyZQB" +
             "BZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iV" +
             "zVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2J" +
             "lIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6c" +

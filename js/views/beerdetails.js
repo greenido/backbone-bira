@@ -8,8 +8,8 @@ window.BeerView = Backbone.View.extend({
         $(this.el).html(this.template(this.model.toJSON()));
 
         this.image = $(this.el).find(".beer-selector img");
-        //this.image.attr("src", "data:image;base64," + this.model.get("image").value);
-        this.image.attr("src", this.model.get("image").value);
+        this.image.attr("src", "data:image;base64," + this.model.get("image").value);
+        //this.image.attr("src", this.model.get("image").value);
 
         var myLatlng = new google.maps.LatLng(this.model.get("latitude"),this.model.get("longitude"));
         var myOptions = {
@@ -114,7 +114,8 @@ window.BeerView = Backbone.View.extend({
         var reader = new FileReader();
         reader.onloadend = _.bind(function () {
             this.image.attr('src', reader.result);
-            this.model.set("image", { value : reader.result });
+
+            this.model.set("image", { value : reader.result.split(",")[1] });
         }, this);
 
         reader.readAsDataURL(this.pictureFile);
