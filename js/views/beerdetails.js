@@ -6,9 +6,10 @@ window.BeerView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template(this.model.toJSON()));
-        setTimeout(function() {
-            initDropbox("beer-selector");
-        }, 1000);
+
+        this.image = $(this.el).find(".beer-selector img");
+        //this.image.attr("src", "data:image;base64," + this.model.get("image").value);
+        this.image.attr("src", this.model.get("image").value);
 
         return this;
     },
@@ -17,7 +18,15 @@ window.BeerView = Backbone.View.extend({
         "change"        : "change",
         "click .save"   : "beforeSave",
         "click .delete" : "deleteBeer",
-        "drop #picture" : "dropHandler"
+        "dragenter .beer-selector" : "preventDefault",
+        "dragexit .beer-selector" : "preventDefault",
+        "dragover .beer-selector" : "preventDefault",
+        "drop .beer-selector" : "dropHandler"
+    },
+
+    preventDefault: function(event) {
+        event.stopPropagation();
+        event.preventDefault();
     },
 
     change: function (event) {
@@ -46,17 +55,8 @@ window.BeerView = Backbone.View.extend({
             utils.displayValidationErrors(check.messages);
             return false;
         }
-        // Upload picture file if a new file was dropped in the drop area
-        if (this.pictureFile) {
-            this.model.set("picture", this.pictureFile.name);
-            utils.uploadFile(this.pictureFile,
-                function () {
-                    self.saveBeer();
-                }
-            );
-        } else {
-            this.saveBeer();
-        }
+        this.saveBeer();
+
         return false;
     },
 
@@ -65,8 +65,9 @@ window.BeerView = Backbone.View.extend({
         this.model.save(null, {
             success: function (model) {
                 self.render();
-                app.navigate('beers/' + model.id, false);
-                utils.showAlert('Success!', 'Your Beer saved', 'alert-success');
+                app.navigate('/', false);
+                utils.showAlert('Success!', 'Beer details were saved successfully.', 'alert-success');
+
             },
             error: function () {
                 utils.showAlert('Error', 'An error occurred while trying to delete this item', 'alert-error');
@@ -87,15 +88,18 @@ window.BeerView = Backbone.View.extend({
     dropHandler: function (event) {
         event.stopPropagation();
         event.preventDefault();
+
         var e = event.originalEvent;
         e.dataTransfer.dropEffect = 'copy';
         this.pictureFile = e.dataTransfer.files[0];
 
-        // Read the image file from the local file system and display it in the img tag
         var reader = new FileReader();
-        reader.onloadend = function () {
-            $('#picture').attr('src', reader.result);
-        };
+        reader.onloadend = _.bind(function () {
+            this.image.attr('src', reader.result);
+            this.model.set("image", { value : reader.result });
+            debugger;
+        }, this);
+
         reader.readAsDataURL(this.pictureFile);
     }
 

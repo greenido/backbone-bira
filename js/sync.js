@@ -6,7 +6,7 @@ Backbone.sync = function(method, model, options) {
         return _.isFunction(object[prop]) ? object[prop]() : object[prop];
     };
 
-    var endpoint = getValue(model, 'url');
+    var endpoint = getValue(model, 'endpoint');
 
     var requestMap = {
         'create': endpoint.insert(model.toJSON()),
@@ -22,7 +22,6 @@ Backbone.sync = function(method, model, options) {
             } else {
                 options.error(data);
             }
-            console.log(data);
         },
         'read' : function(data) {
             if (data.items) {
@@ -30,7 +29,6 @@ Backbone.sync = function(method, model, options) {
             } else {
                 options.error(data);
             }
-            console.log(data);
         },
         'update' : function(data) {
             if (data.result) {
@@ -38,7 +36,6 @@ Backbone.sync = function(method, model, options) {
             } else {
                 options.error(data);
             }
-            console.log(data);
         },
         'delete' : function(data) {
             if (data.error) {
@@ -46,7 +43,6 @@ Backbone.sync = function(method, model, options) {
             } else {
                 options.success();
             }
-            console.log(data);
         }
     };
 
