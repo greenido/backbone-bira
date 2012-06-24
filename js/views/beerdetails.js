@@ -11,6 +11,26 @@ window.BeerView = Backbone.View.extend({
         //this.image.attr("src", "data:image;base64," + this.model.get("image").value);
         this.image.attr("src", this.model.get("image").value);
 
+        var myLatlng = new google.maps.LatLng(this.model.get("latitude"),this.model.get("longitude"));
+        var myOptions = {
+            zoom: 8,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map($(this.el).find(".map").get(0), myOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            draggable: true
+        });
+
+        google.maps.event.addListener(marker, "dragend", _.bind(function() {
+            debugger;
+            this.model.set("latitude", marker.getPosition().lat());
+            this.model.set("longitude", marker.getPosition().lng());
+        }, this));
+
         return this;
     },
 

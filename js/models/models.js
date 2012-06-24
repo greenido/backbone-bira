@@ -142,7 +142,7 @@ window.Beer = Backbone.Model.extend({
         numberOfDrinks: 0,
         score: 0,
         latitude: 37.7750,
-        longitude: 122.4183
+        longitude: -122.4183
 
     }
 });

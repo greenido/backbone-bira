@@ -4,9 +4,7 @@
     <p><i class="icon-signal"></i>Score: <%- score %><br/>
 	<p><i class="icon-glass"></i>Drinks: <%- numberOfDrinks %></p>
 
-    <img class="thumbnail-map" style="border: 0" src="http://maps.googleapis.com/maps/api/staticmap?center=' +
-          <%- latitude %> + '&zoom=10&size=262x150&maptype=roadmap&markers=color:blue%7Clabel:S%7C' +
-          <%- longitude %> + '&sensor=true"/>
+    <img class="thumbnail-map" style="border: 0" src="http://maps.googleapis.com/maps/api/staticmap?center=<%- latitude %>,<%- longitude %>&zoom=8&size=262x150&maptype=roadmap&sensor=true"/>
 </a>
 
 <div class="remove"><i class="icon-remove"></i>Remove Beer</div>

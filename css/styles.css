@@ -43,3 +43,7 @@ a.plain:hover
     display: block;
     margin: 0 auto;
 }
+.map {
+    width: 100%;
+    height: 200px;
+}
