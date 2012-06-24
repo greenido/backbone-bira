@@ -26,7 +26,6 @@ window.BeerView = Backbone.View.extend({
         });
 
         google.maps.event.addListener(marker, "dragend", _.bind(function() {
-            debugger;
             this.model.set("latitude", marker.getPosition().lat());
             this.model.set("longitude", marker.getPosition().lng());
         }, this));
@@ -85,7 +84,7 @@ window.BeerView = Backbone.View.extend({
         this.model.save(null, {
             success: function (model) {
                 self.render();
-                app.navigate('/', false);
+                app.navigate('', false);
                 utils.showAlert('Success!', 'Beer details were saved successfully.', 'alert-success');
 
             },
@@ -98,7 +97,7 @@ window.BeerView = Backbone.View.extend({
     deleteBeer: function () {
         this.model.destroy({
             success: function () {
-                app.navigate("/", false);
+                app.navigate("", false);
             }
         });
         return false;
@@ -116,7 +115,6 @@ window.BeerView = Backbone.View.extend({
         reader.onloadend = _.bind(function () {
             this.image.attr('src', reader.result);
             this.model.set("image", { value : reader.result });
-            debugger;
         }, this);
 
         reader.readAsDataURL(this.pictureFile);

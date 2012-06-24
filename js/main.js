@@ -30,6 +30,12 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	beerDetails: function (id) {
+        if (!beers.models.length) {
+            this.navigate("", false);
+
+            return;
+        }
+
 		$("#content").html(new BeerView({ model: beers.get(id) }).el);
 		this.headerView.selectMenuItem();
 	},
