@@ -78,8 +78,7 @@ window.BeerView = Backbone.View.extend({
     deleteBeer: function () {
         this.model.destroy({
             success: function () {
-                alert("Beer deleted - Now it's time to test a new one");
-                window.history.back();
+                app.navigate("/", false);
             }
         });
         return false;
