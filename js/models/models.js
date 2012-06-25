@@ -141,8 +141,8 @@ window.Beer = Backbone.Model.extend({
             "AAABJRU5ErkJggg==" },
         numberOfDrinks: 0,
         score: 0,
-        latitude: 37.7750,
-        longitude: -122.4183
+        latitude: position ? position.coords.latitude : 37.7750,
+        longitude: position ? position.coords.longitude : -122.4183
 
     }
 });
@@ -154,3 +154,11 @@ window.BeerCollection = Backbone.Collection.extend({
     }
 
 });
+
+var position = null;
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(currentPosition) {
+        position = currentPosition;
+    });
+}

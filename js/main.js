@@ -17,17 +17,20 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	list: function(page) {
-		var p = page ? parseInt(page, 10) : 1;
 		beers.fetch({
-			success: function(){
-				$("#content").html(new BeerListView({
-					beerCollection: beers,
-					page: p
-				}).render().el);
-			}
+			success:_.bind(this.populate, this, page)
 		});
 		this.headerView.selectMenuItem('home-menu');
 	},
+
+    populate: function(page) {
+        var p = page ? parseInt(page, 10) : 1;
+
+        $("#content").html(new BeerListView({
+            beerCollection: beers,
+            page: p
+        }).render().el);
+    },
 
 	beerDetails: function (id) {
         if (!beers.models.length) {
