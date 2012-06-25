@@ -42,7 +42,14 @@ window.BeerListItemView = Backbone.View.extend({
 	},
 
     render: function () {
-        $(this.el).html(this.template(this.model.toJSON()));
+        var data = this.model.toJSON();
+        data["stars"] = [];
+        for (var i = 0; i < this.model.get("score"); i++) {
+            data["stars"].push(i);
+        }
+
+        $(this.el).html(this.template(data));
+
         var imageURI = this.model.toJSON().image ? "data:image/png;base64," + this.model.toJSON().image.value : "/img/beer.png";
 
         $(this.el).find(".thumbnail-image").attr("src", imageURI);
