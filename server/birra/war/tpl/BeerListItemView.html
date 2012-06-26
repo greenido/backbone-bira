@@ -1,0 +1,11 @@
+<a href="#beers/<%- id %>" class="thumbnail plain">
+    <h2><%= beerName %></h2>
+    <img style="border: 0" class="thumbnail-image" width="125" alt="beer image">
+    <p><i class="icon-signal"></i>Score: <%- score %><br/>
+	<p><i class="icon-glass"></i>Drinks: <%- numberOfDrinks %></p>
+
+    <img class="thumbnail-map" style="border: 0" src="http://maps.googleapis.com/maps/api/staticmap?center=<%- latitude %>,<%- longitude %>&zoom=8&size=262x150&maptype=roadmap&sensor=true"/>
+</a>
+
+<div class="remove"><i class="icon-remove"></i>Remove Beer</div>
+

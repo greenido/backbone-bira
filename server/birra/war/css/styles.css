@@ -1,0 +1,49 @@
+a.plain:link
+{ color: #333; text-decoration: none }
+a.plain:active
+{ color: #333; text-decoration: none }
+a.plain:visited
+{ color: #333; text-decoration: none }
+a.plain:hover
+{ color: #333; text-decoration: none }
+
+.status-bar {
+    height: 60px;
+}
+
+.about-icon {
+    float: left;
+    margin-right: 12px;
+}
+
+
+#searchBeer {
+  margin-top: 5px;
+}
+
+.beer-selector img {
+	width: 80px;
+}
+
+.remove {
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.thumbnail-image {
+    float: right;
+}
+
+.thumbnail-map {
+    padding-top: 5px;
+}
+
+.beer-selector img {
+    width: 125px;
+    display: block;
+    margin: 0 auto;
+}
+.map {
+    width: 100%;
+    height: 200px;
+}

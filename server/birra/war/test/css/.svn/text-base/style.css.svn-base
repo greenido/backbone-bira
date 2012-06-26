@@ -1,0 +1,43 @@
+/* ===== Primary Styles ========================================================
+   Author: Ido Green
+   Date: May 2012
+   Demo for I/O 2012
+   ========================================================================== */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.beerItem {
+  background-color: lightyellow;
+  padding: 20px 0px 40px 0px;
+  border-radius: 12px;
+}
+
+#beerScoreText {
+  background-color: lightyellow;
+  width: 25px;
+  text-align: center;
+}
+
+.hero-unit li {
+  padding-top: 15px;
+}
+
+#beerId {
+  width: 45px;
+  height: 25px;
+  margin-top: 10px;
+}
+
+.hideForNow {
+ display: none; 
+}
+
+
+
+
+
+
+
+
