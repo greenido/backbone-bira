@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Beer I/O Demo 2012 - Unit testing on the client</title>
+    <meta name="description" content="Beer IO 2012 Demo">
+    <meta name="author" content="Ido Green">
+
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://code.jquery.com/qunit/git/qunit.js"></script>
+    <script src="../js/libs/lawnchair-0.6.1.js"></script>
+
+    <script>
+      beerApp = {}; // only for our unit tests
+      beerApp.db = {};
+
+      var mockBeer = {
+        beerId: 5007,
+        numberOfComments: 0,
+        name: "VB",
+        country: "Australia",
+        numberOfDrinks: 42,
+        kindOfBeer: "Ale",
+        score: 4,
+        location: "New york, NY",
+        description: "Full body and it's nice in the spring time."
+      };
+    </script>
+
+    <script src="../js/offline.js"></script>
+
+    <script>
+      // TODO: move all this code to: offline.js  
+      $(document).ready(function(){
+        //
+        module("Module 0 - Get All Beers");
+        test("Get ALL beers test", function() {
+          beerApp.db.allBeers();
+          ok( true, "the getting of our beer looks good");
+        });
+
+        module("Module A - Clean our space");
+        test("Start clean and delete ALL", function() {
+          beerApp.db.deleteAll();
+          ok( true, "Check we have nothing in the devTools" );
+        });    
+
+        //
+        module("Module B - Getting/Setting beers");
+        test("Save beer: " + mockBeer.beerId + " test", function() {
+          beerApp.db.saveBeer(mockBeer);
+          ok( beerApp.tmpSaveId === mockBeer.beerId, "Saving part looks good");
+        });
+
+        test("Get a beer test", function() {
+          beerApp.tmpGetId = "n/a";
+          beerApp.db.getBeer(mockBeer.beerId);
+          ok( beerApp.tmpGetId === mockBeer.beerId, "Getting of our beer looks good");
+        });
+
+        test("Save beer: " + mockBeer.beerId + " test", function() {
+          mockBeer.beerId = 6000;
+          beerApp.db.saveBeer(mockBeer);
+          ok( beerApp.tmpSaveId === mockBeer.beerId, "Saving part looks good");
+        });
+
+      });
+    </script>
+
+  </head>
+  <body>
+    <h1 id="qunit-header">Beer I/O Demo 2012 - Unit testing</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+  </body>
+</html>

@@ -1,0 +1,367 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Beer I/O Demo 2012</title>
+    <meta name="description" content="Beer IO 2012 Demo">
+    <meta name="author" content="Ido Green">
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/bootstrap.css">   
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+    <meta itemprop="name" content="Beer I/O Demo 2012">
+    <meta itemprop="image" content="https://developers.google.com/images/developers-logo.png">
+
+    <!-- Yay!! WebIntent in Action -->
+  <intent 
+    action="http://webintents.org/share" 
+    type="text/uri-list" 
+    title="Beers Share" />
+
+  </head>
+<body> 
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Birra I/O Demo 2012</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+
+            <li><a href="#apis">APIs</a></li>
+            <li><a href="index_ini_1.html" target="_blank">Ajax</a></li>
+            <li><a href="index_ini_gapi_2.html" target="_blank">Gapi</a></li>
+            <li><a href="tests/unit-tests.html" target="_blank">Offline</a></li>
+            <li><a href="tests/oauth-tests.html" target="_blank">OAuth2.0</a></li>
+
+            <li><input id="searchBeer" data-provide="typeahead" 
+                       type="search" placeholder="Search..."
+                       data-items="4" 
+                       data-source='["VB", "Goldstar", "Bud", "Bud light", "Nevada", "Gordon", "Singahha"]'>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resources <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://developers.google.com/appengine/" target="_blank">Google App Engine</a></li>
+                <li><a href="https://developers.google.com/apis-explorer/" target="_blank">Google API explorer</a></li>
+                <li class="divider"></li>
+                <li><a href="http://documentcloud.github.com/backbone/" target="_blank">Backbone.js</a></li>
+                <li><a href="http://documentcloud.github.com/underscore/" target="_blank">Underscore.js</a></li>
+                <li>
+                  <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-header">Code & Docs</li>
+                <li><a href="https://github.com/greenido" target="_blank">GitHub Repository</a></li>
+                <li><a href="http://ido-green.appspot.com" target="_blank">Docs and explanations</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div> <!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Main unit -->
+    <div class="hero-unit">
+      <div class="row-fluid">
+        <div class="span11">
+
+          <div class="row-fluid">
+            <div class="span4">
+              <div class="genId">
+                <img src="img/beer48.jpg" alt='beer glass' id='imgTesT'/>
+                BeerId
+                <input name="gbeerId" id="gbeerId" type="text" required=""/>
+              </div>
+
+              <ul class="nav nav-tabs" id="mainTabs">
+                <li class="active"><a href="#listActions" data-toggle="tab">Lists</a></li>
+                <li><a href="#crudActions" data-toggle="tab">Actions</a></li>
+                <li><a href="#commentsActions" data-toggle="tab">Comments</a></li>
+               <!-- <li><a href="#PagingActions" data-toggle="tab">Paging</a></li>
+             -->
+              </ul>
+
+              <div class="tab-content">
+                <div class="tab-pane fade in active" id="listActions">
+                  <li>
+                    <a class="btn btn-large beerListBut" data-maxbeers="50">List Beers</a>
+                  </li>
+                  <li>
+                    List
+                    <select name="listOfDrinks" id="listNumDrinks">
+                      <option>1</option>
+                      <option>2</option>
+                      <option selected="selected">3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>10</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>
+                    <a class="btn btn-large beerListBut">Beers</a>
+                  </li>
+                  <li>
+                    <a class="btn btn-large oneBeerBut" data-onebeer="1">Get A Beer</a>
+                  </li>
+                </div>
+
+                <div class="tab-pane fade in" id="crudActions">
+                  <li>
+                    <a id="beerDetailsModalBut" class="btn btn-large">Update Beer</a>
+                  </li>
+                  <li>
+                    <a id="beerAddBut" class="btn btn-large">Add a Beer</a>
+                  </li>
+                   <li>
+                    <a id="beerDelBut" class="btn btn-large">Delete a Beer</a>
+                  </li>
+                </div>
+
+                <div class="tab-pane fade" id="commentsActions">
+                  <li>
+                    <a id="beerComments" class="btn btn-large">Get Comments</a>
+                  </li>
+                  <li>
+                    <a id="beerAddComment" class="btn btn-large">Add a Comment</a>  
+                    <button id="authorize-button" class="btn" 
+                            title="You must be logged in in order to add comments">Sign In</button> 
+                  </li>
+                </div>
+              <!--
+                <div class="tab-pane fade wordwrap" id="PagingActions">
+                  <p>Use the List for <a href="#" class="beerListBut">Beers</a> or the search (at the top navigation bar) and see how we are using the data.cursor to fetch the next X beers.
+                  </p>
+                </div>
+              -->
+              </div>
+            </div>
+
+            <!-- Results section -->
+            <div  class="span6">
+              <img src="https://developers.google.com/images/developers-logo.png"/>
+
+              <div class="alert fade in">
+                <button class="close" data-dismiss="alert">×</button>
+                <div id="alertContent"></div>
+              </div>
+              <div id="results" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- update/add beer(s) -->
+    <div class="modal hide" id="beerDetailsModal" >
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Beer Details</h3>
+      </div>
+      <div class="modal-body">
+
+        <form id='beerForm'>
+         <!-- <label for="beerId">Id</label>
+          <input name="beerId" id="beerId" type="text" disabled>
+          -->
+          <label for="beerName">Name</label>
+          <input name="beerName" id="beerName" type="text" required="">
+
+          <label for="beerScore">Score</label>
+          <input type="range" min="0" max="5" value="2" name="score"
+                 id="beerScore">
+          <input type="text" id="beerScoreText" disabled>                   
+
+          <label for="beerLocation">Location</label>
+          <input name="location" id="beerLocation" type="text">
+          <span id="localMap"></span>
+
+          <label for="beerKind">Kind</label>
+          <input name="kindOfBeer" id="beerKind" type="text">
+
+          <!-- <label for="beerDesc">Description</label>
+          <input name="beerDesc" id="beerDesc" type="text">
+          -->
+          <label for="BeerNumDrinks">How Many?</label>
+          <select name="numberOfDrinks" id="BeerNumDrinks">
+            <option selected="selected">1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>10</option>
+            <option>18</option>
+            <option>42</option>
+          </select>
+          
+          <div id="imgdrop">Drop Image</div> 
+        </form>
+
+      </div>
+      <br/> 
+
+      <div class="modal-footer">
+        <a href="#" id="cancelBeer" class="btn">Cancel</a>
+        <a href="#" id="saveBeer" class="btn btn-primary">Save</a>
+      </div>
+    </div>
+
+    <!-- comments details -->
+    <div class="modal hide" id="beerCommentsModal" >
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Beer Comments</h3>
+      </div>
+      <div class="modal-body">
+        <form id='beerCommentsForm'>
+          <label for="beerId">Id</label>
+          <input name="beerId" id="beerCommentId" type="text" disabled>
+
+          <label for="beerUserName">Your Name</label>
+          <input name="name" id="beerUserName" type="text" required="">
+          <label for="beerComment">Comment</label>
+          <textarea id ="beerComment" placeholder="" cols="30" rows="5"></textarea>
+        </form>
+
+      </div>
+      <br/> 
+
+      <div class="modal-footer">
+        <a href="#" id="cancelCommentsBeer" class="btn">Cancel</a>
+        <a href="#" id="saveCommentsBeer" class="btn btn-primary">Save</a>
+      </div>
+    </div>
+
+    <!-- Meta data on our demo -->
+    <div class="row">
+      <div id="apis" class="span4">
+        <h2>APIs</h2>
+        <p>  
+        <ul class="nav nav-list">
+          <li>
+            <a href="https://developers.google.com/apis-explorer/?base=https://birra-io2012.appspot.com/_ah/api#p/birra/v1/">
+              <i class="icon-search"></i>
+              Birra API in Google APIs Explorer
+            </a>
+          </li>
+          <li>
+            <a href="https://code.google.com/p/google-api-javascript-client/wiki/GettingStarted">
+              <i class="icon-book"></i>
+              Google JavaScript Client Library</a>
+          </li>
+
+          <li>
+            <a href="http://addyosmani.github.com/backbone-fundamentals/">
+              <i class="icon-pencil"></i>
+              Backbone Fundamentals</a>
+            </a>
+          </li>
+
+          <li><a href="http://brian.io/lawnchair/">
+              <i class="icon-leaf"></i>
+              LawnChair.js - offline library
+            </a>
+          </li>
+        </ul>
+
+        </p>
+        <g:plusone size="medium" annotation="inline"></g:plusone>
+      </div>
+
+      <div class="span6">
+        <h2>Beers On Map</h2>
+        <p>
+          <pre>
+curLoc: 37.78, -122.4
+  latitude  < curLoc.lat + 0.5  && 
+  latitude  > curLoc.lat - 0.5  &&
+  longitude < curLoc.long + 0.5 && 
+  longitude > curLoc.long - 0.5
+          </pre> 
+          <!-- TODO - new image -->
+          <img src="img/beer1.jpg" alt='cold beer'/>
+        </p>
+        <p><a class="btn" href="https://maps.google.com/maps/ms?msid=218092250193238679867.0004c259efb87351fe939&msa=0"
+              target="_blank">Show Map</a></p>
+      </div>
+    </div>
+
+    <hr>
+    <footer>
+      <p><img src="https://developers.google.com/images/developers-logo.png" class="quimby_search_image">  &copy; Google 2012</p>
+
+    </footer>
+  </div> <!-- /container -->
+
+
+  <!-- "...calling all the angles..." -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+  <!-- some bootstrap goodies -->
+  <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+  <script src="js/libs/bootstrap/modal.js"></script>
+  <script src="js/libs/bootstrap/transition.js"></script>
+  <script src="js/libs/bootstrap/tooltip.js"></script>
+  <script src="js/libs/bootstrap/alert.js"></script>
+  <script src="js/libs/bootstrap/typeahead.js"></script>
+  <script src="js/libs/bootstrap/tab.js"></script>
+
+  <!-- offline lib -->
+  <script src="js/libs/lawnchair-0.6.1.js"></script>
+
+  <!-- our little code -->
+  <script src="js/plugins.js"></script>
+  <script src="js/scripts-gapi.js"></script>
+
+  <!-- Google JS API birra-io2012-->
+  <script src="https://apis.google.com/js/client.js?onload=loadGapi">
+    { "client": {},
+      "googleapis.config": {
+        root: "https://birra-io2012.appspot.com/_ah/api"
+      }
+    }
+  </script>
+
+  <!-- web intent -->
+  <!-- use IE 8 and 9, FF 3 upwards, Chrome 5+ and Safari -->
+  <script src="//webintents.org/webintents.min.js"></script>
+  <script src="//webintents.org/webintents-prefix.js"></script>
+
+  <!-- analytics -->
+  <script>
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-31753022-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+</body>
+</html>

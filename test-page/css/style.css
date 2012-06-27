@@ -1,0 +1,117 @@
+/* ===== Primary Styles ========================================================
+   Author: Ido Green
+   Date: May 2012
+   Demo for I/O 2012
+   ========================================================================== */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.beerItem {
+  background-color: white;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 2em;
+  border-radius: 12px;
+}
+
+
+#beerScoreText {
+  background-color: lightyellow;
+  width: 25px;
+  text-align: center;
+}
+
+.hero-unit li {
+  padding-top: 15px;
+}
+
+#gbeerId {
+  width: 45px;
+  height: 25px;
+  margin-top: 10px;
+}
+
+.hideForNow {
+ display: none; 
+}
+
+.beerDetails {
+  padding: 6px;
+  background: white;
+  border-radius: 20px;
+}
+
+#searchBeer {
+  margin-top: 5px;
+}
+
+.genId {
+  padding: 15px;
+  background-color: white;
+  width: 12em;
+  border-radius: 25px;
+}
+
+.wordwrap { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
+
+#listNumDrinks {
+  width: 4em;
+  position: relative;
+  top: 3px;
+}
+
+#gPlus {
+  position: relative;
+  left: 10px;
+  top: 8px;
+}
+#shareBeer {
+  position: relative;
+  left: 1em;
+  bottom: 2px;
+}
+
+.navbar .brand {
+  color: white;
+}
+
+/*
+ show json like a pro
+*/
+.string   { color: green; }
+.number   { color: darkorange; }
+.boolean  { color: blue; }
+.null     { color: magenta; }
+.key      { color: red; }
+
+
+#imgdrop { 
+  border: 5px dashed #ccc; 
+  width: 140px; 
+  height: 100px; 
+  margin: 8px auto;
+  position: relative;
+  left: 7.5em;
+  bottom: 9em;
+  text-align: center;
+  padding-top: 2em;
+ }
+
+#imgdrop.hover { 
+  border: 8px dashed #333; 
+ }
+
+ .beerImgInList {
+  
+  height: 50px;
+  padding-right: 10px;
+ }
+

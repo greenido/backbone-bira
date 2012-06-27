@@ -1,0 +1,1 @@
+curl -H  'content-type:application/json'  -d '{"beerId": "72003" }'  https://bmafoo.appspot.com/_ah/api/beer/v1/beers

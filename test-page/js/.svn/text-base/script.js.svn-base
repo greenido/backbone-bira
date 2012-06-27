@@ -1,0 +1,189 @@
+/*
+	Author: Ido Green
+  Date: May 2012
+*/
+
+// Utils functions
+var beerApp = {};
+beerApp.location = function(){
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      beerApp.curLocation = position.coords.latitude + " , "+ position.coords.longitude;
+      console.log ("cur Lat: "+ position.coords.latitude + " Long: "+ position.coords.longitude);
+    // TODO - show on a map
+
+    }, function(error) {
+      console.error("Error occurred. The code: " + error.code);
+    // error.code can be:
+    //   0: unknown error
+    //   1: permission denied
+    //   2: position unavailable (error response from locaton provider)
+    //   3: timed out
+    });
+  }
+}
+
+beerApp.callingServerHtml = '<p id="spinner"><img src="img/loader.gif"/></p>';
+
+$(".alert").hide();
+
+//
+// Start the party
+//
+$(function() {
+  // init some tools
+  $('#navbar').scrollspy();	  	
+  $("a").tooltip();
+  beerApp.location();
+
+  //
+  // Updating/Adding beer 
+  //
+  $("#beerDetailsModalBut").click(function(data) {
+    console.log("Fetch the beer and show its data in our dialog");	
+    var tmpUrl = 'proxy.php?url=' + $("#beerDetailsModalBut").data('url');
+    var beerId = $("#beerId").val();
+
+    $('#results').html(beerApp.callingServerHtml);
+    $.ajax({
+      url: tmpUrl,
+      contentType: 'application/json',
+      type: "POST",
+      dataType: 'json',
+      data: beerId,
+      success: function(data) {
+        var tmpBeer = data.contents;
+        $("#beerName").val(tmpBeer.id ); 
+        //
+        //// TODO: change it to .name);
+        //        $("#beerScore").val(data.name);
+        //        $("#beerLocation").val(data.name);
+        //        $("#beerKind").val(data.name);
+        //        $("#beerDesc").val(data.name);
+        //                
+        // TODO: BeerNumDrinks.select
+        $('#beerDetailsModal').modal('show');
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        console.error("Oppss... Could not fetch beer: " + beerId + 
+          " Error: " + xhr.status) + " err thrown: " + thrownError;
+      }
+    });
+  });
+	
+  // Add new beer
+  $("#beerAddBut").click(function(data) {
+    $("#beerLocation").val(beerApp.curLocation);
+    $('#beerDetailsModal').modal('show');
+  });
+
+  // actions for the modal
+  $("#cancelBeer").click(function(data) {
+    $('#beerDetailsModal').modal('hide');
+  });
+
+  $("#saveBeer").click(function() {
+    console.log("Save the beer man...");
+    var features = {};
+
+    $("#beerDetailsModal input[id^='beer']").each(function() {      
+      features[$(this).attr('name')] = $(this).val();
+    });
+    // Get the select value as well.
+    features[$('#BeerNumDrinks').attr('name')] = $('#BeerNumDrinks').val();
+
+    var json = JSON.stringify(features); 
+    var tmpUrl = $('#beerAddBut').data('url');
+
+    $.ajax({
+      url: tmpUrl,
+      dataType: 'json',
+      contentType: 'application/json',
+      type: "POST",
+      data: json,
+      success: function(data) {
+        var tmpHTML = '<h4>Your Beer is Safe</h4>';
+        tmpHTML += "<img src='img/beer24.jpg'/>"
+        tmpHTML += 'id: ' + data.id;
+        $('#alertContent').html(tmpHTML);
+    
+        $('.alert').show();
+        console.log ("TODO: show the beer with a nice image data:"+data);
+      },
+
+      error: function(xhr, ajaxOptions, thrownError) {
+        console.error("Oppss.... We got error: " + xhr.status) + " err: " + thrownError;
+      }
+    });
+
+    $('#beerDetailsModal').modal('hide');
+  });
+
+  //{"name": "beer1", "location": "bar", "kindOfBeer": "logger", "score": "1", "numberOfDrinks" : "42", "country": "USA", "description": "my description"}
+
+  $("#beerScore").change(function() {
+    $("#beerScoreText").val($("#beerScore").val());
+  })
+
+  //
+  // Show Beer(s) in a list format
+  //
+  $(".beerListBut").click(function(url) {
+    var tmpUrl = 'proxy.php?url=' + $(".beerListBut").data('url');
+    var params = $("#beerId").val();
+
+    $('#results').html(beerApp.callingServerHtml);
+    // $('#beerListModal').modal('show');
+    $.ajax({
+      url: tmpUrl,
+      dataType: 'json',
+      data: params,
+      success: function(data) {
+        
+        $("#spinner").remove();
+        if (data) {	
+          var beers = data.contents.items; // TODO - change it once we are in prod!	
+          var items = [];
+			  
+          $.each(beers, function(key, val) {
+            var details = 'Type: ' + val.kindOfBeer + '<br/>' +
+            'Drinks: ' + val.numberOfDrinks + '<br/>' +
+            'location: ' + val.location;
+            items.push('<li id="' + val.id + '"> <span class="label label-warning">' + 
+              val.name + '</span> - <span class="badge badge-info">' + 
+              val.score + '</span><br/>' + details + '</li>');
+          //    id: 31108
+          // kindOfBeer: "logger"
+          // location: "bar"
+          // name: "beer1"
+          // numberOfComments: 0
+          // numberOfDrinks: 42
+          // score: 1
+		
+          });
+			 
+          $('<ol/>', {
+            'class': 'beerItem',
+            html: items.join('')
+          }).appendTo('#results');   //#beerListModal');
+          
+        }
+        else {
+          $('<h3/>', {
+            html: "Oppss... something is not working right now."
+          }).appendTo('#results');	
+        //$('#beerListModal').append(curCall);
+
+        }
+        console.log ("TODO: show the beer with a nice image");
+      },
+      error: function(err) {
+        console.error("Oppss.... We got error: ");
+      }
+    });
+  });
+
+});
+
+
+
