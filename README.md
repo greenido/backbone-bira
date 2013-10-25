@@ -6,12 +6,11 @@ and you could see a online version on: http://ido-green.appspot.com/
 What is it?
 =============
 * How to implement a simple model, and a REST API interface using Google App Engine
-** TODO
+** TODO - Show an example of a 'real world' app.
 
 * How to configure Backbone.js to sync with GAE back-end
 
-TODO...
-
+* TODO: How to configure Angular.js to sync with GAE back-end
 
 Feedback
 ==========
