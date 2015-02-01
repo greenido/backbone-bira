@@ -19,4 +19,4 @@ Feedback
 ========
 In case you find some bug and/or have suggestions, please feel free to ping me on (http://plus.ly/greenido]) or at @greenido
 <br>
-Be strong aBd Happy.
+Be strong and Happy.
