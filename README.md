@@ -20,3 +20,7 @@ Feedback
 In case you find some bug and/or have suggestions, please feel free to ping me on (http://plus.ly/greenido]) or at @greenido
 <br>
 Be strong and Happy.
+
+
+[![Analytics](https://ga-beacon.appspot.com/UA-65622529-1/backbone-bira/main)](https://github.com/igrigorik/ga-beacon)
+
